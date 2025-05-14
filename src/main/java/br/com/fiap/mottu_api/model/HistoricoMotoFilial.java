@@ -1,9 +1,11 @@
 package br.com.fiap.mottu_api.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,16 +16,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Moto {
+public class HistoricoMotoFilial {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_moto;
-
-    @NotBlank(message = "A placa não pode estar em branco")
-    @Size(max = 7, min = 6)
-    private String placa;
+    private Long id_historico_moto_filial;
 
     @NotNull(message = "Campo obrigatório!")
     @ManyToOne
-    private ModeloMoto modeloMoto;
+    private Moto moto;
 
+    @NotNull(message = "Campo obrigatório!")
+    @ManyToOne
+    private Filial filial;
 }

@@ -1,4 +1,26 @@
 package br.com.fiap.mottu_api.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Filial {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_filial;
+
+    @NotBlank(message = "O nome da filial não pode estar em branco.")
+    @Size(max = 7, min = 6)
+    private String nome_filial;
 }
