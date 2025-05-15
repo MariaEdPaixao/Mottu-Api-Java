@@ -1,7 +1,6 @@
 package br.com.fiap.mottu_api.controller;
 
 import br.com.fiap.mottu_api.model.Filial;
-import br.com.fiap.mottu_api.model.Moto;
 import br.com.fiap.mottu_api.repository.FilialRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +47,7 @@ public class FilialController {
         return ResponseEntity.noContent().build(); //204
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     public ResponseEntity<Object> update(@PathVariable @Valid Long id, @RequestBody Filial filial){
         log.info("Atualizando moto + " + id);
 

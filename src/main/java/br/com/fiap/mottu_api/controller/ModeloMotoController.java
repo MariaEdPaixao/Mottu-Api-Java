@@ -17,58 +17,58 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.fiap.mottu_api.model.Moto;
-import br.com.fiap.mottu_api.repository.MotoRepository;
+import br.com.fiap.mottu_api.model.ModeloMoto;
+import br.com.fiap.mottu_api.repository.ModeloMotoRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/moto")
+@RequestMapping("/modeloMoto")
 @Slf4j
-public class MotoController {
-    
-    @Autowired MotoRepository motoRepository;
+public class ModeloMotoController {
+    @Autowired ModeloMotoRepository modeloMotoRepository;
 
-    @GetMapping
-    public List<Moto> index(){
-        return motoRepository.findAll();
+     @GetMapping
+    public List<ModeloMoto> index(){
+        return modeloMotoRepository.findAll();
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Moto create(@RequestBody @Valid Moto moto){
-        log.info("Cadastrando moto" + moto.getPlaca());
-        return motoRepository.save(moto);
+    public ModeloMoto create(@RequestBody @Valid ModeloMoto moto){
+        log.info("Cadastrando modelo da moto" + moto.getModelo());
+        return modeloMotoRepository.save(moto);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Moto> get(@PathVariable Long id){
-        log.info("Buscando uma moto " +id);
-        return ResponseEntity.ok(getMoto(id));
+    public ResponseEntity<ModeloMoto> get(@PathVariable Long id){
+        log.info("Buscando um modelo de moto " +id);
+        return ResponseEntity.ok(getModeloMoto(id));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid Moto moto){
-        log.info("Atualizando moto " + id + " com " + moto.getId());
+    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid ModeloMoto modeloMoto){
+        log.info("Atualizando modelo da moto " + id + " com " + modeloMoto.getId());
 
-        var oldMoto = getMoto(id);
-        BeanUtils.copyProperties(moto, oldMoto, "id");
-        motoRepository.save(oldMoto);
-        return ResponseEntity.ok(oldMoto);
+        var oldModeloMoto = getModeloMoto(id);
+        BeanUtils.copyProperties(modeloMoto, oldModeloMoto, "id");
+        modeloMotoRepository.save(oldModeloMoto);
+        return ResponseEntity.ok(oldModeloMoto);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Object> destroy(@PathVariable Long id){
-        log.info("Apagando uma moto " + id);
+        log.info("Apagando um modelo da moto " + id);
 
-        motoRepository.delete(getMoto(id));
+        modeloMotoRepository.delete(getModeloMoto(id));
         return ResponseEntity.noContent().build(); //204
     }
 
 
-    private Moto getMoto(Long id){
-        return motoRepository.findById(id)
+    private ModeloMoto getModeloMoto(Long id){
+        return modeloMotoRepository.findById(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Moto não encontrada"));
     }
+    
 }
