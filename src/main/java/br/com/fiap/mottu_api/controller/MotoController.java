@@ -29,7 +29,6 @@ public class MotoController {
     
     @Autowired MotoRepository motoRepository;
 
-
     @GetMapping
     public List<Moto> index(){
         return motoRepository.findAll();
@@ -48,23 +47,24 @@ public class MotoController {
         return ResponseEntity.ok(getMoto(id));
     }
 
-    @DeleteMapping
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid Moto moto){
+        log.info("Atualizando moto " + id + " com " + moto.getId());
+
+        var oldMoto = getMoto(id);
+        BeanUtils.copyProperties(moto, oldMoto, "id");
+        motoRepository.save(oldMoto);
+        return ResponseEntity.ok(oldMoto);
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> destroy(@PathVariable Long id){
-        log.info("Apagando uma moto " +id);
+        log.info("Apagando uma moto " + id);
 
         motoRepository.delete(getMoto(id));
         return ResponseEntity.noContent().build(); //204
     }
 
-    @PutMapping
-    public ResponseEntity<Object> update(@PathVariable @Valid Long id, @RequestBody Moto moto){
-        log.info("Atualizando moto + " + id + " com " + moto.getId_moto());
-
-        var oldMoto = getMoto(id);
-        BeanUtils.copyProperties(moto, oldMoto, "id_moto");
-        motoRepository.save(oldMoto); 
-        return ResponseEntity.ok(oldMoto);
-    }
 
     private Moto getMoto(Long id){
         return motoRepository.findById(id)

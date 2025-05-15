@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class ModeloMoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_modelo_moto;
+    private Long id;
     @NotBlank(message = "O modelo não pode estar em branco")
     @Size(max = 7, min = 6)
     private String modelo;

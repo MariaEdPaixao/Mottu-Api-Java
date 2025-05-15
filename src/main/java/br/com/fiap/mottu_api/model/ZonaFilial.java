@@ -1,10 +1,6 @@
 package br.com.fiap.mottu_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,15 +12,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class HistoricoMotoFilial {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ZonaFilial {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "Campo obrigatório!")
     @ManyToOne
-    private Moto moto;
+    private Filial filial;
 
     @NotNull(message = "Campo obrigatório!")
     @ManyToOne
-    private Filial filial;
+    private ZonaPadrao zonaPadrao;
 }

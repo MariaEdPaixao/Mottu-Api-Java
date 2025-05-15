@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Moto {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_moto;
+    private Long id;
 
     @NotBlank(message = "A placa não pode estar em branco")
     @Size(max = 7, min = 6)
