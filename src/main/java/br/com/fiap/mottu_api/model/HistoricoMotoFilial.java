@@ -1,15 +1,13 @@
 package br.com.fiap.mottu_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -27,4 +25,7 @@ public class HistoricoMotoFilial {
     @NotNull(message = "Campo obrigatório!")
     @ManyToOne
     private Filial filial;
+
+    @Column(name = "data_movimentacao", nullable = false)
+    private LocalDateTime dataMovimentacao = LocalDateTime.now();
 }

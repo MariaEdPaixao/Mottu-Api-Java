@@ -1,6 +1,7 @@
 package br.com.fiap.mottu_api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class MotoController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Moto create(@RequestBody @Valid Moto moto){
+        Optional<Moto> motoExistente = motoRepository.findByPlaca(moto.getPlaca());
+        if (motoExistente.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Placa já cadastrada.");
+        }
+
         log.info("Cadastrando moto" + moto.getPlaca());
         return motoRepository.save(moto);
     }
@@ -51,10 +57,18 @@ public class MotoController {
     public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid Moto moto){
         log.info("Atualizando moto " + id + " com " + moto.getId());
 
-        var oldMoto = getMoto(id);
-        BeanUtils.copyProperties(moto, oldMoto, "id");
-        motoRepository.save(oldMoto);
-        return ResponseEntity.ok(oldMoto);
+        Moto motoExistente = getMoto(id);
+
+        // Verifica se a nova placa pertence a outra moto
+        motoRepository.findByPlaca(moto.getPlaca())
+                .filter(m -> !m.getId().equals(id)) // diferente do que está sendo atualizado
+                .ifPresent(m -> {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Placa já cadastrada em outra moto.");
+                });
+
+        BeanUtils.copyProperties(moto, motoExistente, "id");
+        motoRepository.save(motoExistente);
+        return ResponseEntity.ok(motoExistente);
     }
 
     @DeleteMapping("{id}")

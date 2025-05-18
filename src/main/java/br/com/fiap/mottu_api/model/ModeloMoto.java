@@ -21,6 +21,6 @@ public class ModeloMoto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "O modelo não pode estar em branco")
-    @Size(max = 7, min = 6)
+    @Size(min = 6)
     private String modelo;
 }

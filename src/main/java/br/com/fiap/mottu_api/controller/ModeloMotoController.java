@@ -68,7 +68,7 @@ public class ModeloMotoController {
     private ModeloMoto getModeloMoto(Long id){
         return modeloMotoRepository.findById(id)
                 .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Moto não encontrada"));
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Modelo não encontrad"));
     }
     
 }

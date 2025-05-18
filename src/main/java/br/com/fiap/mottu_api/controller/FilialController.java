@@ -39,7 +39,7 @@ public class FilialController {
         return ResponseEntity.ok(getFilial(id));
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public ResponseEntity<Object> destroy(@PathVariable Long id){
         log.info("Apagando uma filial " +id);
 
@@ -49,7 +49,7 @@ public class FilialController {
 
     @PutMapping("{id}")
     public ResponseEntity<Object> update(@PathVariable @Valid Long id, @RequestBody Filial filial){
-        log.info("Atualizando moto + " + id);
+        log.info("Atualizando filial + " + id);
 
         var oldFilial = getFilial(id);
         BeanUtils.copyProperties(filial, oldFilial, "id");
@@ -60,6 +60,6 @@ public class FilialController {
     private Filial getFilial(Long id){
         return filialRepository.findById(id)
                 .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Moto não encontrada"));
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Filial não encontrada"));
     }
 }
