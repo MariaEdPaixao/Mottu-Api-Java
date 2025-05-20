@@ -36,9 +36,17 @@ public class ModeloMotoController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public ModeloMoto create(@RequestBody @Valid ModeloMoto moto){
-        log.info("Cadastrando modelo da moto" + moto.getModelo());
+        log.info("Cadastrando modelo da moto " + moto.getModelo());
+
+        // Verifica se já existe um modelo com o mesmo nome
+        modeloMotoRepository.findByModelo(moto.getModelo())
+                .ifPresent(existing -> {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Modelo já cadastrado.");
+                });
+
         return modeloMotoRepository.save(moto);
     }
+
 
     @GetMapping("{id}")
     public ResponseEntity<ModeloMoto> get(@PathVariable Long id){
@@ -50,11 +58,18 @@ public class ModeloMotoController {
     public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid ModeloMoto modeloMoto){
         log.info("Atualizando modelo da moto " + id + " com " + modeloMoto.getId());
 
+        modeloMotoRepository.findByModelo(modeloMoto.getModelo())
+                .filter(m -> !m.getId().equals(id))
+                .ifPresent(m -> {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Modelo já cadastrado.");
+                });
+
         var oldModeloMoto = getModeloMoto(id);
         BeanUtils.copyProperties(modeloMoto, oldModeloMoto, "id");
         modeloMotoRepository.save(oldModeloMoto);
         return ResponseEntity.ok(oldModeloMoto);
     }
+
 
     @DeleteMapping("{id}")
     public ResponseEntity<Object> destroy(@PathVariable Long id){
@@ -68,7 +83,7 @@ public class ModeloMotoController {
     private ModeloMoto getModeloMoto(Long id){
         return modeloMotoRepository.findById(id)
                 .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Modelo não encontrad"));
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Modelo não encontrado"));
     }
     
 }

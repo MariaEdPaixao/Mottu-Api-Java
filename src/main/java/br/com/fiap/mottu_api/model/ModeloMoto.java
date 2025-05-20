@@ -1,9 +1,6 @@
 package br.com.fiap.mottu_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -22,5 +19,6 @@ public class ModeloMoto {
     private Long id;
     @NotBlank(message = "O modelo não pode estar em branco")
     @Size(min = 6)
+    @Column(unique = true)
     private String modelo;
 }

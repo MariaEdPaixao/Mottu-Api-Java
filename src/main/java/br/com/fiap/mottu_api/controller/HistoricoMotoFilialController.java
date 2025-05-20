@@ -1,7 +1,11 @@
 package br.com.fiap.mottu_api.controller;
 
+import br.com.fiap.mottu_api.model.Filial;
 import br.com.fiap.mottu_api.model.HistoricoMotoFilial;
+import br.com.fiap.mottu_api.model.Moto;
+import br.com.fiap.mottu_api.repository.FilialRepository;
 import br.com.fiap.mottu_api.repository.HistoricoMotoFilialRepository;
+import br.com.fiap.mottu_api.repository.MotoRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +25,13 @@ public class HistoricoMotoFilialController {
     @Autowired
     HistoricoMotoFilialRepository historicoRepository;
 
+    @Autowired
+    MotoRepository motoRepository;
+
+    @Autowired
+    FilialRepository filialRepository;
+
+
     @GetMapping
     public List<HistoricoMotoFilial> index() {
         return historicoRepository.findAll();
@@ -30,6 +41,8 @@ public class HistoricoMotoFilialController {
     @ResponseStatus(HttpStatus.CREATED)
     public HistoricoMotoFilial create(@RequestBody @Valid HistoricoMotoFilial historico) {
         log.info("Cadastrando histórico moto-filial: " + historico);
+        getMoto(historico.getMoto().getId());
+        getFilial(historico.getFilial().getId());
         return historicoRepository.save(historico);
     }
 
@@ -44,6 +57,8 @@ public class HistoricoMotoFilialController {
         log.info("Atualizando histórico " + id);
         var oldHistorico = getHistorico(id);
         BeanUtils.copyProperties(historico, oldHistorico, "id");
+        getMoto(historico.getMoto().getId());
+        getFilial(historico.getFilial().getId());
         historicoRepository.save(oldHistorico);
         return ResponseEntity.ok(oldHistorico);
     }
@@ -58,5 +73,14 @@ public class HistoricoMotoFilialController {
     private HistoricoMotoFilial getHistorico(Long id) {
         return historicoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Histórico não encontrado"));
+    }
+
+    private Moto getMoto(Long id) {
+        return motoRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Moto não encontrada"));
+    }
+    private Filial getFilial(Long id) {
+        return filialRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Filial não encontrada"));
     }
 }
