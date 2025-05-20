@@ -15,8 +15,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/historico-dto")
-public class HistoricoDTOController {
+@RequestMapping("/moto")
+public class HistoricoMotoController {
 
     @Autowired
     HistoricoMotoFilialRepository historicoRepository;
@@ -27,7 +27,7 @@ public class HistoricoDTOController {
     @Autowired
     MotoService motoService;
 
-    @GetMapping
+    @GetMapping("/historico")
     public ResponseEntity<List<MotoHistoricoDTO>> findAll() {
         var list = historicoRepository.findAll().stream().map(h ->
                 new MotoHistoricoDTO(
@@ -42,7 +42,7 @@ public class HistoricoDTOController {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/moto/{id}/historico")
+    @GetMapping("/{id}/historico")
     public ResponseEntity<HistoricoMotoEspecificaDTO> getHistoricoPorMoto(@PathVariable Long id) {
         getMoto(id);
         return ResponseEntity.ok(motoService.getHistoricoPorMoto(id));
@@ -52,5 +52,4 @@ public class HistoricoDTOController {
         return motoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Moto não encontrada"));
     }
-
 }
