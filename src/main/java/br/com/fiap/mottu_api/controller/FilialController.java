@@ -2,15 +2,21 @@ package br.com.fiap.mottu_api.controller;
 
 import br.com.fiap.mottu_api.model.Filial;
 import br.com.fiap.mottu_api.repository.FilialRepository;
+import br.com.fiap.mottu_api.specification.FilialSpecification;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -18,12 +24,19 @@ import java.util.List;
 @Slf4j
 public class FilialController {
 
+    //todos os campos que serão possibilidades de filtro da filial
+    public record FilialFiltros(String nomeFilial, String pais, String cidade, String estado){}
+
     @Autowired
     private FilialRepository filialRepository;
 
     @GetMapping
-    public List<Filial> index(){
-        return filialRepository.findAll();
+    public Page<Filial> index(
+            FilialFiltros filtros,
+            @PageableDefault(size = 4, sort = "nomeFilial", direction = Sort.Direction.ASC) Pageable pageable
+            ){
+        var specification = FilialSpecification.withFilters(filtros);
+        return filialRepository.findAll(specification, pageable);
     }
 
     @PostMapping
