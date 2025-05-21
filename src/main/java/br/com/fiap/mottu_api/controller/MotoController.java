@@ -1,13 +1,19 @@
 package br.com.fiap.mottu_api.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import br.com.fiap.mottu_api.model.ModeloMoto;
 import br.com.fiap.mottu_api.repository.ModeloMotoRepository;
 import br.com.fiap.mottu_api.service.MotoService;
+import br.com.fiap.mottu_api.specification.MotoSpecification;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +36,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/moto")
 @Slf4j
 public class MotoController {
+
+    //todos os campos que serão possibilidades de filtro de moto
+    public record MotosFiltros(String placa, String modelo){}
     
     @Autowired MotoRepository motoRepository;
     @Autowired
@@ -39,8 +48,12 @@ public class MotoController {
     MotoService motoService = new MotoService();
 
     @GetMapping
-    public List<Moto> index(){
-        return motoRepository.findAll();
+    public Page<Moto> index(
+            MotosFiltros filtros,
+            @PageableDefault(size = 4, sort = "placa", direction = Sort.Direction.ASC)Pageable pageable
+            ){
+        var specification = MotoSpecification.withFilters(filtros);
+        return motoRepository.findAll(specification,pageable);
     }
 
     @PostMapping
