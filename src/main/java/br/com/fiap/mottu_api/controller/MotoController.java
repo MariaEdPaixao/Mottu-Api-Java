@@ -1,15 +1,12 @@
 package br.com.fiap.mottu_api.controller;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
-import br.com.fiap.mottu_api.model.ModeloMoto;
 import br.com.fiap.mottu_api.repository.ModeloMotoRepository;
 import br.com.fiap.mottu_api.service.MotoService;
 import br.com.fiap.mottu_api.specification.MotoSpecification;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -48,6 +45,7 @@ public class MotoController {
     MotoService motoService = new MotoService();
 
     @GetMapping
+    @Cacheable("motos")
     public Page<Moto> index(
             MotosFiltros filtros,
             @PageableDefault(size = 4, sort = "placa", direction = Sort.Direction.ASC)Pageable pageable
@@ -57,6 +55,7 @@ public class MotoController {
     }
 
     @PostMapping
+    @CacheEvict(value = "motos", allEntries = true)
     @ResponseStatus(code = HttpStatus.CREATED)
     public Moto create(@RequestBody @Valid Moto moto) {
         motoService.validarMoto(moto, null); // null porque ainda não existe ID
@@ -71,6 +70,7 @@ public class MotoController {
     }
 
     @PutMapping("{id}")
+    @CacheEvict(value = "motos", allEntries = true)
     public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid Moto moto) {
         log.info("Atualizando moto " + id + " com " + moto.getId());
 
@@ -83,6 +83,7 @@ public class MotoController {
     }
 
     @DeleteMapping("{id}")
+    @CacheEvict(value = "motos", allEntries = true)
     public ResponseEntity<Object> destroy(@PathVariable Long id){
         log.info("Apagando uma moto " + id);
 

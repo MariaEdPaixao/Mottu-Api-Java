@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,8 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping("/filial")
@@ -30,7 +30,9 @@ public class FilialController {
     @Autowired
     private FilialRepository filialRepository;
 
+    //@ParameterObject
     @GetMapping
+    @Cacheable("filial")
     public Page<Filial> index(
             FilialFiltros filtros,
             @PageableDefault(size = 4, sort = "nomeFilial", direction = Sort.Direction.ASC) Pageable pageable
@@ -40,6 +42,7 @@ public class FilialController {
     }
 
     @PostMapping
+    @CacheEvict(value = "filial", allEntries = true) 
     @ResponseStatus(code = HttpStatus.CREATED)
     public Filial create(@RequestBody @Valid Filial filial){
         log.info("Cadastrando filial" + filial.getId());
@@ -53,6 +56,7 @@ public class FilialController {
     }
 
     @DeleteMapping("{id}")
+    @CacheEvict(value = "filial", allEntries = true) 
     public ResponseEntity<Object> destroy(@PathVariable Long id){
         log.info("Apagando uma filial " +id);
 
@@ -61,6 +65,7 @@ public class FilialController {
     }
 
     @PutMapping("{id}")
+    @CacheEvict(value = "filial", allEntries = true) 
     public ResponseEntity<Object> update(@PathVariable @Valid Long id, @RequestBody Filial filial){
         log.info("Atualizando filial + " + id);
 

@@ -2,7 +2,6 @@ package br.com.fiap.mottu_api.specification;
 
 import br.com.fiap.mottu_api.controller.FilialController.FilialFiltros;
 import br.com.fiap.mottu_api.model.Filial;
-import br.com.fiap.mottu_api.model.Moto;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 

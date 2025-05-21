@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,12 +30,14 @@ import lombok.extern.slf4j.Slf4j;
 public class ModeloMotoController {
     @Autowired ModeloMotoRepository modeloMotoRepository;
 
-     @GetMapping
+    @GetMapping
+    @Cacheable("modeloMoto")
     public List<ModeloMoto> index(){
         return modeloMotoRepository.findAll();
     }
 
     @PostMapping
+    @CacheEvict(value = "modeloMoto", allEntries = true) 
     @ResponseStatus(code = HttpStatus.CREATED)
     public ModeloMoto create(@RequestBody @Valid ModeloMoto moto){
         log.info("Cadastrando modelo da moto " + moto.getModelo());
@@ -55,6 +59,7 @@ public class ModeloMotoController {
     }
 
     @PutMapping("{id}")
+    @CacheEvict(value = "modeloMoto", allEntries = true) 
     public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid ModeloMoto modeloMoto){
         log.info("Atualizando modelo da moto " + id + " com " + modeloMoto.getId());
 
@@ -72,6 +77,7 @@ public class ModeloMotoController {
 
 
     @DeleteMapping("{id}")
+    @CacheEvict(value = "modeloMoto", allEntries = true) 
     public ResponseEntity<Object> destroy(@PathVariable Long id){
         log.info("Apagando um modelo da moto " + id);
 

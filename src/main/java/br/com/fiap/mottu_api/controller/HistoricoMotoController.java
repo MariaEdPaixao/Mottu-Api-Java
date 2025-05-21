@@ -7,6 +7,7 @@ import br.com.fiap.mottu_api.repository.HistoricoMotoFilialRepository;
 import br.com.fiap.mottu_api.repository.MotoRepository;
 import br.com.fiap.mottu_api.service.MotoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class HistoricoMotoController {
     MotoService motoService;
 
     @GetMapping("/historico")
+    @Cacheable("historicoMoto")
     public ResponseEntity<List<MotoHistoricoDTO>> findAll() {
         var list = historicoRepository.findAll().stream().map(h ->
                 new MotoHistoricoDTO(

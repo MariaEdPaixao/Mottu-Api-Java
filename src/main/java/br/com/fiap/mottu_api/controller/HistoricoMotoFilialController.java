@@ -10,6 +10,8 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,8 +20,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/historico")
@@ -37,6 +37,7 @@ public class HistoricoMotoFilialController {
 
 
     @GetMapping
+    @Cacheable("historicoMotoFilial")
     public Page<HistoricoMotoFilial> index(
             @PageableDefault(size = 4, sort = "dataMovimentacao", direction = Sort.Direction.DESC)Pageable pageable
             ) {
@@ -44,6 +45,7 @@ public class HistoricoMotoFilialController {
     }
 
     @PostMapping
+    @CacheEvict(value = "historicoMotoFilial", allEntries = true)
     @ResponseStatus(HttpStatus.CREATED)
     public HistoricoMotoFilial create(@RequestBody @Valid HistoricoMotoFilial historico) {
         log.info("Cadastrando histórico moto-filial: " + historico);
@@ -59,6 +61,7 @@ public class HistoricoMotoFilialController {
     }
 
     @PutMapping("{id}")
+    @CacheEvict(value = "historicoMotoFilial", allEntries = true)
     public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody @Valid HistoricoMotoFilial historico) {
         log.info("Atualizando histórico " + id);
         var oldHistorico = getHistorico(id);
@@ -70,6 +73,7 @@ public class HistoricoMotoFilialController {
     }
 
     @DeleteMapping("{id}")
+    @CacheEvict(value = "historicoMotoFilial", allEntries = true)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         log.info("Deletando histórico " + id);
         historicoRepository.delete(getHistorico(id));
