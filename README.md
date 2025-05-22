@@ -1,5 +1,5 @@
 
-# Mottu API - Sistema de Gerenciamento de Motos e Filiais
+# Mottu API (SmartPatio) - Sistema de Gerenciamento de Motos e Filiais
 
 ## Sobre o Projeto
 
