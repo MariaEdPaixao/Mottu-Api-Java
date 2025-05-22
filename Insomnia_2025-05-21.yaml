@@ -1,0 +1,646 @@
+type: collection.insomnia.rest/5.0
+name: Mottu API Java
+meta:
+  id: wrk_49adce0d6b46487597cb87018c6d7901
+  created: 1747524974076
+  modified: 1747525611428
+collection:
+  - name: Filial
+    meta:
+      id: fld_9671ec0f49ff461992a475d28321f1cc
+      created: 1747524983569
+      modified: 1747782825937
+      sortKey: -1747524983569
+    children:
+      - url: localhost:8080/filial
+        name: My first request
+        meta:
+          id: req_77a2348af8ad4396a9c23058e5634568
+          created: 1747524974179
+          modified: 1747876074473
+          isPrivate: false
+          sortKey: -1747525065664
+        method: GET
+        parameters:
+          - id: pair_a8fb3460199a401a9c9b6c7a7dd8965a
+            name: nomeFilial
+            value: mottu butantã
+            disabled: true
+          - id: pair_0032ba7dc5be491db657d9501dc47f05
+            name: cidade
+            value: são paulo
+            disabled: true
+          - id: pair_a86ce2e0dbd04e5694bb1d0404891617
+            name: pais
+            value: méxico
+            disabled: true
+          - id: pair_e0fc3f98067141439f091793e486dbea
+            name: estado
+            value: mg
+            disabled: true
+          - id: pair_776163d87db64b88aaead9e60928f125
+            name: page
+            value: "2"
+            disabled: true
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/filial
+        name: New Request
+        meta:
+          id: req_e0732d4640cb42e4b22805f4594ebbdf
+          created: 1747525291538
+          modified: 1747876178164
+          isPrivate: false
+          sortKey: -1747525291538
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "nomeFilial": "Mottu Vila Mariana",
+              "cidade": "São Paulo",
+              "estado": "SP",
+              "logradouro": "Rua Domingos de Morais",
+              "numero": 1234,
+              "complemento": "Próximo ao metrô Ana Rosa",
+              "cep": "04010000",
+              "pais": "Brasil"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/filial/5
+        name: New Request
+        meta:
+          id: req_f08adb51cf2c4db0881c937d58caa8a8
+          created: 1747525413661
+          modified: 1747876211514
+          isPrivate: false
+          sortKey: -1747525413661
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/filial/5
+        name: New Request
+        meta:
+          id: req_6568fe3f5b3d4010ac0d5c992139b294
+          created: 1747525445779
+          modified: 1747876266994
+          isPrivate: false
+          sortKey: -1747525445779
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "nomeFilial": "Mottu Vila Mariana",
+              "cidade": "São Paulo",
+              "estado": "SP",
+              "logradouro": "Rua Domingos de Morais",
+              "numero": 1235,
+              "complemento": "Próximo ao metrô Ana Rosa",
+              "cep": "04010000",
+              "pais": "Brasil"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/filial/1
+        name: New Request
+        meta:
+          id: req_2cb35a00997c480c8e9714b23e117c9b
+          created: 1747525497722
+          modified: 1747525511251
+          isPrivate: false
+          sortKey: -1747525497722
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Moto
+    meta:
+      id: fld_d0147717ed144391b78362b7653547c4
+      created: 1747524989999
+      modified: 1747526917449
+      sortKey: -1747524989999
+    children:
+      - url: localhost:8080/moto
+        name: New Request
+        meta:
+          id: req_13b6098f139b41c889cf70dc4f8ae81e
+          created: 1747525536935
+          modified: 1747789660874
+          isPrivate: false
+          sortKey: -1747525536935
+        method: GET
+        parameters:
+          - id: pair_7693dc8ba7a543d3a3e7b4eb6e36d594
+            name: placa
+            value: "123"
+            disabled: true
+          - id: pair_81939616ae4f48d99700a3c47ec7d08f
+            name: modelo
+            value: mottu e
+            disabled: true
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/moto
+        name: New Request
+        meta:
+          id: req_55bcdc3d95294ade9983515573260eef
+          created: 1747525633890
+          modified: 1747788781920
+          isPrivate: false
+          sortKey: -1747525633890
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "placa": "ABC1D98",
+              "modeloMoto": {
+                "id": 1
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/moto/8
+        name: New Request
+        meta:
+          id: req_9440ab08e76f4b0a98dc3aac69caf70a
+          created: 1747526123506
+          modified: 1747876291192
+          isPrivate: false
+          sortKey: -1747526123506
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/moto/8
+        name: New Request
+        meta:
+          id: req_f5941e737e044181a003a71aa3a523ad
+          created: 1747526138561
+          modified: 1747876311107
+          isPrivate: false
+          sortKey: -1747526138561
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "placa": "ABC1D98",
+              "modeloMoto": {
+                "id": 2
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/moto/1
+        name: New Request
+        meta:
+          id: req_33f7bb9fdfcb48e9a4ade02c2f2a249e
+          created: 1747526168362
+          modified: 1747526173956
+          isPrivate: false
+          sortKey: -1747526168362
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Historico Moto Filial
+    meta:
+      id: fld_ba70396437aa4b79932dc9c09b29375f
+      created: 1747524999840
+      modified: 1747525664628
+      sortKey: -1747524999840
+    children:
+      - url: localhost:8080/historico
+        name: New Request
+        meta:
+          id: req_13a8246cb20e4973b45c4a93d9534753
+          created: 1747525665476
+          modified: 1747700641752
+          isPrivate: false
+          sortKey: -1747526226015
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/historico
+        name: New Request
+        meta:
+          id: req_88bf3fbbe1f94090a76a33b1ade76f7c
+          created: 1747526226115
+          modified: 1747876344727
+          isPrivate: false
+          sortKey: -1747526226115
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "filial": {
+                "id": 5
+              },
+              "moto": {
+                "id": 8
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/historico/1
+        name: New Request
+        meta:
+          id: req_a949297fa4fb4ffd9fbcb494128ece86
+          created: 1747526304378
+          modified: 1747526309908
+          isPrivate: false
+          sortKey: -1747526304378
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/historico/1
+        name: New Request
+        meta:
+          id: req_636d6e8226044f978b26cdce2f630b56
+          created: 1747526315670
+          modified: 1747526869363
+          isPrivate: false
+          sortKey: -1747526315670
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "filial": {
+                "id": 1
+              },
+              "moto": {
+                "id": 1
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/historico/1
+        name: New Request
+        meta:
+          id: req_2af72e2ca71745b0b60eda56fa211527
+          created: 1747526330572
+          modified: 1747526337571
+          isPrivate: false
+          sortKey: -1747526330572
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Modelo Moto
+    meta:
+      id: fld_bab2234509f5485fa446f0d355c172f9
+      created: 1747525008707
+      modified: 1747526839947
+      sortKey: -1747525008707
+    children:
+      - url: localhost:8080/modeloMoto
+        name: New Request
+        meta:
+          id: req_b96c0c2f6e2b45adb6ea75d719a3aac3
+          created: 1747525655471
+          modified: 1747791510974
+          isPrivate: false
+          sortKey: -1747525655471
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/modeloMoto
+        name: New Request
+        meta:
+          id: req_8da6fe21288741a4b928eb1b789713c5
+          created: 1747525780194
+          modified: 1747702359220
+          isPrivate: false
+          sortKey: -1747525780194
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "modelo": "Mottu E"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/modeloMoto/1
+        name: New Request
+        meta:
+          id: req_323fa91fc2a14464b054a4a3e766a076
+          created: 1747525886075
+          modified: 1747525896304
+          isPrivate: false
+          sortKey: -1747525886075
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/modeloMoto/1
+        name: New Request
+        meta:
+          id: req_5760451b93dc46eb98a70263ac741b96
+          created: 1747525907470
+          modified: 1747525934722
+          isPrivate: false
+          sortKey: -1747525907470
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "modelo": "Mottu Sport"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/modeloMoto/1
+        name: New Request
+        meta:
+          id: req_a91357399ece4435ad02b28246da1ae6
+          created: 1747526040003
+          modified: 1747526050408
+          isPrivate: false
+          sortKey: -1747526040003
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Historico Moto DTO
+    meta:
+      id: fld_58734894812b414f8c06e4ca2f29a7a7
+      created: 1747525052704
+      modified: 1747791365789
+      sortKey: -1747525052704
+    children:
+      - url: localhost:8080/moto/historico
+        name: New Request
+        meta:
+          id: req_c1852602736946f7b380fbb288da0eb3
+          created: 1747526383650
+          modified: 1747871903107
+          isPrivate: false
+          sortKey: -1747526406639
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/moto/8/historico
+        name: New Request
+        meta:
+          id: req_d7dfab66ec0a4d6a8c96863693720ee4
+          created: 1747526429628
+          modified: 1747876355271
+          isPrivate: false
+          sortKey: -1747526429628
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Historico Filial DTO
+    meta:
+      id: fld_987f5dc81a944d29a609bf36e8368ade
+      created: 1747782858259
+      modified: 1747782858259
+      sortKey: -1747782858259
+    children:
+      - url: localhost:8080/filial/5/historico
+        name: New Request
+        meta:
+          id: req_6bd02efecedc4cadbbd09f7cc922790d
+          created: 1747782839389
+          modified: 1747871894579
+          isPrivate: false
+          sortKey: -1747782866307
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_8df81fa01f18671ba1c055df07584f74bc888478
+    created: 1747524974088
+    modified: 1747524974088
+environments:
+  name: Base Environment
+  meta:
+    id: env_8df81fa01f18671ba1c055df07584f74bc888478
+    created: 1747524974083
+    modified: 1747524974083
+    isPrivate: false
