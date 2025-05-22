@@ -103,7 +103,7 @@ Para otimizar respostas, alguns endpoints utilizam cache com `@Cacheable`, evita
    ```
    http://localhost:8080/swagger-ui/index.html
    ```
-5. Teste os endpoints com Postman ou Swagger.
+5. Teste os endpoints com Postman/Insomnia ou Swagger.
 
 ## Contribuidores
 
