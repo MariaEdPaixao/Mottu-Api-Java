@@ -21,7 +21,8 @@ Desenvolvemos uma solução baseada em uma API REST com banco de dados relaciona
 ## Arquitetura
 
 A arquitetura da aplicação segue os princípios de uma aplicação Spring Boot com as camadas:
-- **Model:** Entidades JPA que representam as tabelas, DTOs (objeto de transferência de dados para respostas especializadas).
+- **Model:** Entidades JPA que representam as tabelas
+- **DTOs:** objeto de transferência de dados para respostas especializadas
 - **Repository:** Interfaces que herdam JpaRepository.
 - **Service:** Lógica de negócio (DTOs, montagem de respostas).
 - **Controller:** Endpoints REST.
