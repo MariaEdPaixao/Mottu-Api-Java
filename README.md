@@ -99,8 +99,11 @@ Para otimizar respostas, alguns endpoints utilizam cache com `@Cacheable`, evita
    ```
    http://localhost:8080/db
    ```
-
-4. Teste os endpoints com Postman ou Swagger.
+4. Acesse o Swagger:
+   ```
+   http://localhost:8080/swagger-ui/index.html
+   ```
+5. Teste os endpoints com Postman ou Swagger.
 
 ## Contribuidores
 
