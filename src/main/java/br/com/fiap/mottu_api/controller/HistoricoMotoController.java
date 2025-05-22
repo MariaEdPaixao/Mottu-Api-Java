@@ -1,8 +1,8 @@
 package br.com.fiap.mottu_api.controller;
 
-import br.com.fiap.mottu_api.model.HistoricoMotoEspecificaDTO;
 import br.com.fiap.mottu_api.model.Moto;
-import br.com.fiap.mottu_api.model.MotoHistoricoDTO;
+import br.com.fiap.mottu_api.model.DTO.HistoricoMotoEspecificaDTO;
+import br.com.fiap.mottu_api.model.DTO.MotoHistoricoDTO;
 import br.com.fiap.mottu_api.repository.HistoricoMotoFilialRepository;
 import br.com.fiap.mottu_api.repository.MotoRepository;
 import br.com.fiap.mottu_api.service.MotoService;

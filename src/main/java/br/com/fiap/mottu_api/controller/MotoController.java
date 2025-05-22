@@ -6,7 +6,6 @@ import br.com.fiap.mottu_api.repository.MotoRepository;
 import br.com.fiap.mottu_api.service.MotoService;
 import br.com.fiap.mottu_api.specification.MotoSpecification;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

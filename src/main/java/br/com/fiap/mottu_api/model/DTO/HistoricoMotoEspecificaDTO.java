@@ -1,4 +1,4 @@
-package br.com.fiap.mottu_api.model;
+package br.com.fiap.mottu_api.model.DTO;
 
 import lombok.Builder;
 import lombok.Data;

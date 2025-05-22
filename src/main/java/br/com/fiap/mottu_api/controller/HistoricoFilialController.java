@@ -1,7 +1,7 @@
 package br.com.fiap.mottu_api.controller;
 
 import br.com.fiap.mottu_api.model.Filial;
-import br.com.fiap.mottu_api.model.HistoricoFilialDTO;
+import br.com.fiap.mottu_api.model.DTO.HistoricoFilialDTO;
 import br.com.fiap.mottu_api.repository.FilialRepository;
 import br.com.fiap.mottu_api.service.FilialService;
 import io.swagger.v3.oas.annotations.Operation;

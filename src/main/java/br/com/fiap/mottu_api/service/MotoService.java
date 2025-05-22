@@ -1,9 +1,9 @@
 package br.com.fiap.mottu_api.service;
 
-import br.com.fiap.mottu_api.model.HistoricoMotoEspecificaDTO;
 import br.com.fiap.mottu_api.model.ModeloMoto;
 import br.com.fiap.mottu_api.model.Moto;
-import br.com.fiap.mottu_api.model.MovimentacaoDTO;
+import br.com.fiap.mottu_api.model.DTO.HistoricoMotoEspecificaDTO;
+import br.com.fiap.mottu_api.model.DTO.MovimentacaoDTO;
 import br.com.fiap.mottu_api.repository.HistoricoMotoFilialRepository;
 import br.com.fiap.mottu_api.repository.ModeloMotoRepository;
 import br.com.fiap.mottu_api.repository.MotoRepository;
